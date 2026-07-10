@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <title>Frontend Mentor | FX Checker</title>
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-brand">FX_CHECKER</div>
+    <div class="app-ticker" aria-label="Live markets" id="header-ticker">
+      <!-- ticker.js renders scrolling pairs here -->
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="converter" aria-label="Currency converter">
+      <h2 class="converter-title">Check the rate</h2>
+
+      <div class="converter-grid">
+        <div class="converter-field">
+          <label class="converter-label" for="send-amount">Send</label>
+          <div class="converter-row">
+            <input type="number" id="send-amount" value="1000" />
+            <button type="button" data-open-picker="send" id="send-currency-display">
+              <img class="flag-icon" alt="" />
+              <span class="currency-code">USD</span>
+              <span class="chevron" aria-hidden="true">▾</span>
+            </button>
+          </div>
+        </div>
+
+        <button id="swap-currencies" type="button" aria-label="Swap currencies">⇄</button>
+
+        <div class="converter-field">
+          <label class="converter-label" for="receive-amount">Receive</label>
+          <div class="converter-row">
+            <input type="number" id="receive-amount" readonly />
+            <button type="button" data-open-picker="receive" id="receive-currency-display">
+              <img class="flag-icon" alt="" />
+              <span class="currency-code">EUR</span>
+              <span class="chevron" aria-hidden="true">▾</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="converter-footer">
+        <p id="live-rate" class="converter-rate"></p>
+        <div class="converter-actions">
+          <button id="favorite-pair" type="button" aria-pressed="false">
+            <span class="star" aria-hidden="true">★</span> Favorited
+          </button>
+          <button id="log-conversion" type="button">Log conversion</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-panel" aria-label="Rate details">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="tab-history" id="tabbtn-history">History</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="tab-compare" id="tabbtn-compare">Compare</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="tab-favorites" id="tabbtn-favorites">Favorites <span class="tab-count" id="favorites-count">0</span></button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="tab-log" id="tabbtn-log">Log <span class="tab-count" id="log-count">0</span></button>
+      </div>
+
+      <div class="tab-panel" id="tab-history" role="tabpanel" aria-labelledby="tabbtn-history">
+        <div class="history-stats">
+          <div class="stat"><span class="stat-label">Open</span><span class="stat-value" id="stat-open">–</span></div>
+          <div class="stat"><span class="stat-label">Last</span><span class="stat-value" id="stat-last">–</span></div>
+          <div class="stat"><span class="stat-label">Change</span><span class="stat-value" id="stat-change">–</span></div>
+          <div class="stat"><span class="stat-label">% Change</span><span class="stat-value" id="stat-pct-change">–</span></div>
+          <div class="range-toggle" role="group" aria-label="Chart range">
+            <button data-range="1D">1D</button>
+            <button data-range="1W">1W</button>
+            <button data-range="1M" class="is-active">1M</button>
+            <button data-range="3M">3M</button>
+            <button data-range="1Y">1Y</button>
+            <button data-range="5Y">5Y</button>
+          </div>
+        </div>
+        <div class="chart-wrap" id="rate-chart" aria-label="Rate history chart"></div>
+      </div>
+
+      <div class="tab-panel" id="tab-compare" role="tabpanel" aria-labelledby="tabbtn-compare" hidden>
+        <!-- compare.js renders comparison rows here -->
+      </div>
+
+      <div class="tab-panel" id="tab-favorites" role="tabpanel" aria-labelledby="tabbtn-favorites" hidden>
+        <!-- favorites.js renders pinned pairs here -->
+      </div>
+
+      <div class="tab-panel" id="tab-log" role="tabpanel" aria-labelledby="tabbtn-log" hidden>
+        <!-- log.js renders conversion history here -->
+      </div>
+    </section>
+  </main>
+
+  <dialog class="currency-picker" aria-label="Select currency">
+    <!-- currencyPicker.js renders search input + grouped list here -->
+  </dialog>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
